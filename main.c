@@ -1,14 +1,19 @@
+#include <editline/history.h>
+#include <editline/readline.h>
 #include <stdio.h>
-void hello(int n) {
-  if (n > 10 && n <= 20) {
-    printf("%d: is supported", n);
-  } else {
-    printf("%d: not supported , choose number between 10 and 20", n);
-  }
-}
+#include <stdlib.h>
 
+static char input[2048];
 int main() {
+  puts("Lispy Version 0.0.0.1");
+  puts("Press Ctrl+c to Exit\n");
 
-  hello(12);
+  while (1) {
+    char *input = readline("Lispy -> ");
+    add_history(input);
+    printf("No you're a %s\n", input);
+
+    free(input);
+  }
   return 0;
 }
